@@ -11,3 +11,8 @@ const openNav = function () {
         isOpen = true;
     }
 }
+
+const copyright = function () {
+    document.querySelector(".footer").innerHTML = "<p title='Copyright By Ultracpp'>&copy; Ultracpp - " + new Date().getFullYear() + "</p>";
+}
+copyright();
