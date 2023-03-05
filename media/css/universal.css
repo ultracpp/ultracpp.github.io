@@ -38,6 +38,13 @@
     justify-content: center;
     flex-direction: column;
     margin-right: 10px;
+    transition-duration: 0.2s;
+    transition-property: background-color, transform;
+}
+
+.menu:active {
+    transform: rotateZ(350deg);
+    background: black;
 }
 
 .menu>hr {
@@ -48,17 +55,21 @@
     margin: 2px;
 }
 
+
 .nav {
     min-height: 100vh;
-    width: 300px;
+    width: 0px;
+    overflow-x: hidden;
     position: absolute;
     top: 50px;
     right: 0;
-    background-color: red;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    background: linear-gradient(45deg, blue, crimson);
+    transition-duration: 0.3s;
+    transition-property: width;
 }
 
 .main {
