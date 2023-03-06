@@ -1,4 +1,5 @@
 import { ultracpp } from "../../media/js/ucpp.js";
+import * as nav from "../home/nav.js"
 
 const homePage = new ultracpp; // created a homepage
 

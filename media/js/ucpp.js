@@ -50,7 +50,7 @@ class ultracpp {
         }
     }
 
-    render(where = ".root") {
+    render(where = ".render") {
         document.querySelector(where).append(this.element);
     }
     clear() {
