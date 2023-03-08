@@ -72,6 +72,15 @@
     transition-property: width;
 }
 
+.nav_button {
+    height: 40px;
+    width: 100px;
+    border: none;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+}
+
 .main {
     min-height: 100vh;
 }
