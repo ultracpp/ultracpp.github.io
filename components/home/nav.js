@@ -5,3 +5,7 @@ blogButton.render(".nav");
 cppButton.render(".nav");
 docsButton.render(".nav");
 ucppjsButton.render(".nav");
+blogButton.render(".nav");
+cppButton.render(".nav");
+docsButton.render(".nav");
+ucppjsButton.render(".nav");

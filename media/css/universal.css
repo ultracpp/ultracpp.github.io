@@ -89,6 +89,16 @@
 
 .nav>button:active {
     transform: scale(0.9, 0.9);
+    margin: 3px;
+    transition-duration: 0.2s;
+}
+
+.nav>button:hover {
+    transform: scale(1.1, 1.1);
+}
+
+.nav>button:active {
+    transform: scale(0.9, 0.9);
 }
 
 .main {
