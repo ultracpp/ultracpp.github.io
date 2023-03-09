@@ -24,6 +24,7 @@ let cppButton = new ultracpp("button");
 cppButton.insertData("C++");
 
 let hindiButton = new ultracpp("button");
+hindiButton.insertData("Hinglish");
 hindiButton.addEvent("click", function () { hindi.render() })
 
 
