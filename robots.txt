@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ultracpp.github.io/info/sitemap.xml
