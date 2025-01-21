@@ -64,28 +64,41 @@
             color: #333;
         }
 
-        ul {
-            list-style: none;
-            padding: 0;
+        .repo-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 0 20px;
         }
 
-        ul li {
+        .repo-card {
             background-color: #fff;
-            margin: 10px 0;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        ul li:hover {
-            background-color: #f1f1f1;
+        .repo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
         }
 
-        ul li a {
+        .repo-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #0073e6;
+        }
+
+        .repo-card p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        .repo-card a {
             text-decoration: none;
             color: #0073e6;
-            font-size: 1.1rem;
             font-weight: bold;
         }
 
@@ -107,14 +120,19 @@
             })
             .then(response => response.json())
             .then(repos => {
-                let repoList = '<ul>';
+                let repoList = '<div class="repo-list">';
                 repos.forEach(repo => {
                     // `ultracpp.github.io` 레포지토리를 제외하고 나머지 리포지토리만 나열
                     if (repo.name !== 'ultracpp.github.io') {
-                        repoList += `<li><a href="${repo.html_url}" target="_blank">${repo.name}</a></li>`;
+                        repoList += `
+                            <div class="repo-card">
+                                <h3><a href="${repo.html_url}" target="_blank">${repo.name}</a></h3>
+                                <p>${repo.description || "No description available."}</p>
+                            </div>
+                        `;
                     }
                 });
-                repoList += '</ul>';
+                repoList += '</div>';
                 document.getElementById('repos').innerHTML = repoList;
             })
             .catch(error => console.error('Error fetching repositories:', error));
