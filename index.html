@@ -4,22 +4,136 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ultracpp GitHub</title>
+    <style>
+        /* Reset default margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fa;
+            color: #333;
+            text-align: center;
+            padding: 30px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .profile {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .profile img {
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            margin-bottom: 20px;
+        }
+
+        .profile h2 {
+            font-size: 2rem;
+            color: #0073e6;
+        }
+
+        .profile p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .profile a {
+            text-decoration: none;
+            color: #0073e6;
+            font-weight: bold;
+        }
+
+        h2 {
+            margin-top: 40px;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            background-color: #fff;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
+        }
+
+        ul li:hover {
+            background-color: #f1f1f1;
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: #0073e6;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        footer {
+            margin-top: 40px;
+            font-size: 1rem;
+            color: #888;
+        }
+    </style>
     <script>
-        fetch('https://api.github.com/users/ultracpp/repos')
+        fetch('https://api.github.com/users/ultracpp')
+            .then(response => response.json())
+            .then(user => {
+                document.getElementById('profile-image').src = user.avatar_url;
+                document.getElementById('profile-name').textContent = user.name || "ultracpp";
+                document.getElementById('profile-bio').textContent = user.bio || "This is my GitHub profile.";
+                document.getElementById('profile-link').href = user.html_url;
+
+                return fetch('https://api.github.com/users/ultracpp/repos');
+            })
             .then(response => response.json())
             .then(repos => {
-                let repoList = '<h2>My GitHub Repositories</h2><ul>';
+                let repoList = '<ul>';
                 repos.forEach(repo => {
-                    repoList += `<li><a href="${repo.html_url}">${repo.name}</a></li>`;
+                    repoList += `<li><a href="${repo.html_url}" target="_blank">${repo.name}</a></li>`;
                 });
                 repoList += '</ul>';
                 document.getElementById('repos').innerHTML = repoList;
             })
-            .catch(error => console.error('Error fetching repositories:', error));
+            .catch(error => console.error('Error fetching data:', error));
     </script>
 </head>
 <body>
     <h1>Welcome to ultracpp's GitHub Page</h1>
+
+    <div class="profile">
+        <img id="profile-image" src="https://avatars.githubusercontent.com/u/1?v=4" alt="GitHub Profile Image">
+        <h2 id="profile-name">ultracpp</h2>
+        <p id="profile-bio">This is my GitHub profile.</p>
+        <a id="profile-link" href="https://github.com/ultracpp" target="_blank">Visit my GitHub</a>
+    </div>
+
+    <h2>My GitHub Repositories</h2>
     <div id="repos"></div>
+
+    <footer>
+        <p>Created with ❤️ by ultracpp</p>
+    </footer>
 </body>
 </html>
