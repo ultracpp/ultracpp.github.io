@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ultracpp GitHub</title>
+    <script>
+        fetch('https://api.github.com/users/ultracpp/repos')
+            .then(response => response.json())
+            .then(repos => {
+                let repoList = '<h2>My GitHub Repositories</h2><ul>';
+                repos.forEach(repo => {
+                    repoList += `<li><a href="${repo.html_url}">${repo.name}</a></li>`;
+                });
+                repoList += '</ul>';
+                document.getElementById('repos').innerHTML = repoList;
+            })
+            .catch(error => console.error('Error fetching repositories:', error));
+    </script>
+</head>
+<body>
+    <h1>Welcome to ultracpp's GitHub Page</h1>
+    <div id="repos"></div>
+</body>
+</html>
